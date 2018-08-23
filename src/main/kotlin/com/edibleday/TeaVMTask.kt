@@ -35,7 +35,6 @@ open class TeaVMTask : DefaultTask() {
 
     var installDirectory: String = File(project.buildDir, "teavm").absolutePath
     var targetFileName: String = "app.js"
-    var mainPageIncluded: Boolean = true
     var copySources: Boolean = false
     var generateSourceMap: Boolean = false
     var minified: Boolean = true
@@ -50,7 +49,6 @@ open class TeaVMTask : DefaultTask() {
 
         tool.targetDirectory = File(installDirectory)
         tool.targetFileName = targetFileName
-        tool.isMainPageIncluded = mainPageIncluded
 
         if (project.hasProperty("mainClassName") && project.property("mainClassName") != null) {
             tool.mainClass = "${project.property("mainClassName")}"

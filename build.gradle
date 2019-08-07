@@ -1,4 +1,4 @@
-group 'io.anuke'
+group 'teavm'
 
 buildscript {
     repositories {

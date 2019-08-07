@@ -17,7 +17,7 @@ version = '0.4.4'
 group = "io.anuke"
 
 ext{
-    teavmVersion = '0.6.0-dev-529'
+    teavmVersion = '0.6.0-dev-816'
 }
 
 repositories {

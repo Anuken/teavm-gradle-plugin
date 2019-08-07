@@ -1,4 +1,4 @@
-group 'teavm'
+group "io.anuke"
 
 buildscript {
     repositories {
@@ -11,10 +11,10 @@ buildscript {
 
 
 apply plugin: 'kotlin'
-apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
 version = '0.4.4'
+group = "io.anuke"
 
 ext {
     teavmVersion = '0.6.0-dev-816'

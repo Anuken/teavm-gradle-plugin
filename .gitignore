@@ -1,6 +1,7 @@
 # Gradle ignores
 build/
 .gradle/
+/out/
 
 # Idea ignores
 .idea/

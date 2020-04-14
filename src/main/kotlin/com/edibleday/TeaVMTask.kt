@@ -25,6 +25,7 @@ import org.gradle.api.tasks.TaskAction
 import org.teavm.tooling.TeaVMTool
 import org.teavm.tooling.sources.DirectorySourceFileProvider
 import org.teavm.tooling.sources.JarSourceFileProvider
+import org.teavm.vm.TeaVMOptimizationLevel
 import java.io.File
 import java.io.IOException
 import java.net.MalformedURLException
@@ -37,6 +38,7 @@ open class TeaVMTask : DefaultTask() {
     var copySources: Boolean = false
     var generateSourceMap: Boolean = false
     var minified: Boolean = true
+    var optimization: TeaVMOptimizationLevel = TeaVMOptimizationLevel.SIMPLE
 
     val gradleLog = Logging.getLogger(TeaVMTask::class.java)
     val log by lazy { TeaVMLoggerGlue(project.logger) }
@@ -86,6 +88,7 @@ open class TeaVMTask : DefaultTask() {
         tool.cacheDirectory = cacheDirectory
         tool.isMinifying = minified
         tool.log = log
+        tool.optimizationLevel = optimization
         tool.isSourceFilesCopied = copySources
         tool.isSourceMapsFileGenerated = generateSourceMap
 

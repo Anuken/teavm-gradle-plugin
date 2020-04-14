@@ -89,6 +89,7 @@ open class TeaVMTask : DefaultTask() {
         tool.isMinifying = minified
         tool.log = log
         tool.optimizationLevel = optimization
+        tool.isIncremental = true
         tool.isSourceFilesCopied = copySources
         tool.isSourceMapsFileGenerated = generateSourceMap
 

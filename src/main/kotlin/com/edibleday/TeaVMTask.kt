@@ -98,6 +98,7 @@ open class TeaVMTask : DefaultTask() {
         try {
             tool.classLoader = classLoader
             tool.generate()
+            println(tool.problemProvider.problems.map { p -> p.text }.toString())
         } finally {
             try {
                 classLoader.close()

@@ -38,9 +38,9 @@ open class TeaVMTask : DefaultTask() {
     var targetFileName: String = "app.js"
     var copySources: Boolean = false
     var generateSourceMap: Boolean = false
-    var minified: Boolean = true
+    var obfuscate: Boolean = true
     var incremental: Boolean = true
-    var optimization: TeaVMOptimizationLevel = TeaVMOptimizationLevel.SIMPLE
+    var optimization: TeaVMOptimizationLevel = TeaVMOptimizationLevel.ADVANCED
 
     val gradleLog = Logging.getLogger(TeaVMTask::class.java)
     val log by lazy { TeaVMLoggerGlue(project.logger) }
@@ -50,7 +50,7 @@ open class TeaVMTask : DefaultTask() {
         val project = project
 
         tool.targetDirectory = File(installDirectory)
-        tool.targetFileName = targetFileName
+        tool.setTargetFileName(targetFileName)
 
         if (project.hasProperty("mainClassName") && project.property("mainClassName") != null) {
             tool.mainClass = "${project.property("mainClassName")}"
@@ -88,7 +88,7 @@ open class TeaVMTask : DefaultTask() {
         val cacheDirectory = File(project.buildDir, "teavm-cache")
         cacheDirectory.mkdirs()
         tool.cacheDirectory = cacheDirectory
-        tool.isMinifying = minified
+        tool.setObfuscated(obfuscate)
         tool.log = log
         tool.optimizationLevel = optimization
         tool.isIncremental = incremental

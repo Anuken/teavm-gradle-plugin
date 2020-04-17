@@ -107,7 +107,7 @@ open class TeaVMTask : DefaultTask() {
 
             if(problems.any()){
                 println("Problems:")
-                println(problems.joinToString("\n"))
+                println(problems.joinToString(separator = "\n"))
             }
         } finally {
             try {

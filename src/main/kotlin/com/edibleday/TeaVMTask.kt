@@ -22,6 +22,8 @@ import org.gradle.api.logging.Logging
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.TaskAction
+import org.teavm.diagnostics.DefaultProblemTextConsumer
+import org.teavm.diagnostics.ProblemTextConsumer
 import org.teavm.tooling.TeaVMTool
 import org.teavm.tooling.sources.DirectorySourceFileProvider
 import org.teavm.tooling.sources.JarSourceFileProvider
@@ -98,7 +100,11 @@ open class TeaVMTask : DefaultTask() {
         try {
             tool.classLoader = classLoader
             tool.generate()
-            println(tool.problemProvider.problems.map { p -> p.text }.toString())
+            println(tool.problemProvider.problems.map { p ->
+                val cons = DefaultProblemTextConsumer()
+                p.render(cons)
+                cons.text
+            }.toString())
         } finally {
             try {
                 classLoader.close()

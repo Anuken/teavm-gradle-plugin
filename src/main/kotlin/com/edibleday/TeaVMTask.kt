@@ -38,6 +38,7 @@ open class TeaVMTask : DefaultTask() {
     var copySources: Boolean = false
     var generateSourceMap: Boolean = false
     var minified: Boolean = true
+    var incremental: Boolean = true
     var optimization: TeaVMOptimizationLevel = TeaVMOptimizationLevel.SIMPLE
 
     val gradleLog = Logging.getLogger(TeaVMTask::class.java)
@@ -89,7 +90,7 @@ open class TeaVMTask : DefaultTask() {
         tool.isMinifying = minified
         tool.log = log
         tool.optimizationLevel = optimization
-        tool.isIncremental = true
+        tool.isIncremental = incremental
         tool.isSourceFilesCopied = copySources
         tool.isSourceMapsFileGenerated = generateSourceMap
 

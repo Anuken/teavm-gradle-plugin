@@ -54,8 +54,7 @@ open class TeaVMTask : DefaultTask() {
 
         if (project.hasProperty("mainClassName") && project.property("mainClassName") != null) {
             tool.mainClass = "${project.property("mainClassName")}"
-        } else throw TeaVMException("mainClassName not found!")
-
+        } else throw GradleException("mainClassName not found!")
 
         fun addSrc(f: File) {
             if (f.isFile) {
@@ -118,10 +117,9 @@ open class TeaVMTask : DefaultTask() {
 
     }
 
-
     private fun prepareClassLoader(): URLClassLoader {
         try {
-            val urls = project.configurations.getByName("runtime").run {
+            val urls = project.configurations.getByName("runtimeClasspath").run {
                 val dependencies = files.map { it.toURI().toURL() }
                 val artifacts = allArtifacts.files.map { it.toURI().toURL() }
                 dependencies + artifacts
